@@ -1,0 +1,42 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# <mount_point> <fstype> <device>               <device2>                                <flags>
+
+# Vbmeta related partitions.
+/vbmeta          emmc    /dev/block/platform/bootdevice/by-name/vbmeta                     flags=display="Vbmeta";backup=1;flashimg=1;
+/vbmeta_vendor   emmc    /dev/block/platform/bootdevice/by-name/vbmeta_vendor              flags=display="Vbmeta_vendor";backup=1;flashimg=1;
+/vbmeta_system   emmc    /dev/block/platform/bootdevice/by-name/vbmeta_system              flags=display="Vbmeta_system";backup=1;flashimg=1;
+
+# Other partitions.
+/recovery	     emmc	 /dev/block/platform/bootdevice/by-name/recovery                   flags=display="Recovery";backup=1;flashimg=1;
+/boot            emmc    /dev/block/platform/bootdevice/by-name/boot                       flags=backup=1;display="Boot";flashimg=1;
+/dtbo            emmc    /dev/block/platform/bootdevice/by-name/dtbo                       flags=backup=1;display="Dtbo";flashimg=1;
+/cache           ext4    /dev/block/platform/bootdevice/by-name/cache                      flags=display="Cache";wipeingui;wipeduringfactoryreset;
+/metadata        ext4    /dev/block/platform/bootdevice/by-name/md_udc                     flags=display="metadata"
+/persist         ext4    /dev/block/platform/bootdevice/by-name/persist                    flags=display=persist;backup=1
+/persistent	     emmc	 /dev/block/platform/bootdevice/by-name/frp                        flags=display="Persistent";backup=1  
+
+# IMEI and modem related
+/protect_f       ext4    /dev/block/platform/bootdevice/by-name/protect1                   flags=display="Protect_f";backup=1;
+/protect_s       ext4    /dev/block/platform/bootdevice/by-name/protect2                   flags=display="Protect_s";backup=1;
+/nvdata          ext4    /dev/block/platform/bootdevice/by-name/nvdata                     flags=display="NVdata";backup=1;
+/nvram           emmc    /dev/block/platform/bootdevice/by-name/nvram                      flags=display="NVram";backup=1;
+/proinfo         emmc    /dev/block/platform/bootdevice/by-name/proinfo                    flags=display="proinfo";backup=1;
+
+# Standard MediaTek's Partitions
+/logo                     emmc     /dev/block/platform/bootdevice/by-name/logo             flags=display="Logo";backup=1;
+/expdb                    emmc     /dev/block/platform/bootdevice/by-name/expdb            
+/seccfg                   emmc     /dev/block/platform/bootdevice/by-name/seccfg           
+/spmfw                    emmc     /dev/block/platform/bootdevice/by-name/spmfw            
+/tranfs                   ext4     /dev/block/platform/bootdevice/by-name/tranfs           flags=backup
+/tee1                     emmc     /dev/block/platform/bootdevice/by-name/tee1             flags=backup
+/tee2                     emmc     /dev/block/platform/bootdevice/by-name/tee2             flags=backup
+/bootloader               emmc     /dev/block/platform/bootdevice/by-name/lk               flags=display="LK";backup=1;flashimg=1;
+/bootloader2              emmc     /dev/block/platform/bootdevice/by-name/lk2              flags=backup
+/tkv                      emmc     /dev/block/platform/bootdevice/by-name/tkv              flags=backup
+
+# External-Devices (SDCARD | OTG)
+/external_sd             auto      /dev/block/mmcblk1p1        /dev/block/mmcblk1          flags=display="Micro SD";storage;wipeingui;removable
+/usb-otg                 auto      /dev/block/sda1             /dev/block/sda              flags=display="USB-Storage";fsflags=utf8;storage;wipeingui;removable
