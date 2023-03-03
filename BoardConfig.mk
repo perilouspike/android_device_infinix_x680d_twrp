@@ -46,16 +46,16 @@ BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_TAGS_OFFSET := 0x07880000
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x11b00000
-BOARD_KERNEL_IMAGE_NAME := zImage
-
+BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG :=
 BOARD_KERNEL_SEPARATED_DTBO :=
 
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1 buildvariant=user
-BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
+#BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/zImage
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 
@@ -107,7 +107,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # System as root
 BOARD_SUPPRESS_SECURE_ERASE := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+#BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Android Verified Boot
@@ -176,11 +176,11 @@ TW_EXCLUDE_TWRPAPP := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
+#TW_INCLUDE_CRYPTO_FBE := true
 TW_USE_FSCRYPT_POLICY := 1
 
 # Use props from system instead from recovery build
-TW_OVERRIDE_SYSTEM_PROPS := \
+#TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
 
 

@@ -15,6 +15,6 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_X680D.mk
+    $(LOCAL_DIR)/omni_X680D.mk
 
-COMMON_LUNCH_CHOICES := twrp_X680D-eng
+COMMON_LUNCH_CHOICES := omni_X680D-eng
