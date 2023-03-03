@@ -53,7 +53,7 @@ BOARD_KERNEL_SEPARATED_DTBO :=
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
 #BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
@@ -176,7 +176,7 @@ TW_EXCLUDE_TWRPAPP := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-#TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_CRYPTO_FBE := true
 TW_USE_FSCRYPT_POLICY := 1
 
 # Use props from system instead from recovery build
