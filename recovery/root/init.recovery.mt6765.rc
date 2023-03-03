@@ -12,19 +12,17 @@ on init
     mkdir /mnt/vendor/persist 0700 root root
     mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
 
+on fs
+    install_keyring
+    on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    setprop crypto.ready 1
+
 on post-fs
     # Support A/B feature for emmc boot region
     symlink /dev/block/sda /dev/block/mmcblk0boot0
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
-
-on fs
-    install_keyring
-    setprop crypto.ready 1
-
-on boot
-    start health-hal-2-0
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
@@ -54,6 +52,9 @@ service keymaster-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-service.bean
     disabled
     seclabel u:r:recovery:s0
 
+service gatekeeperd /system/bin/gatekeeperd /data/misc/gatekeeper
+    seclabel u:r:recovery:s0
+
 service keymaster_attestation-1-1 /vendor/bin/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-service
     interface vendor.mediatek.hardware.keymaster_attestation@1.0::IKeymasterDevice default
     interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
@@ -63,8 +64,11 @@ service keymaster_attestation-1-1 /vendor/bin/hw/vendor.mediatek.hardware.keymas
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
+    start keystore2
+    start mobicore
     start keymaster-4-0
     start gatekeeper-1-0
+    start keymaster_attestation-1-1
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
@@ -80,3 +84,6 @@ on property:twrp.decrypt.done=true
     stop teei_daemon
     stop keymaster-4-0
     stop gatekeeper-1-0
+
+on boot
+    start health-hal-2-0    
