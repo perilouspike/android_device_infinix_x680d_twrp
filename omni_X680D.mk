@@ -38,8 +38,8 @@ PRODUCT_MANUFACTURER := infinix
 
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31 \
-    PRIVATE_BUILD_DESC="full_x680d_h6116-user 10 QP1A.190711.020 199789 release-keys"
+    ro.vendor.build.security_patch=2099-12-31
+    #PRIVATE_BUILD_DESC="full_x680d_h6116-user 10 QP1A.190711.020 199789 release-keys"
 
 PRODUCT_GMS_CLIENTID_BASE := android-transsion-infinix-rev1
 
