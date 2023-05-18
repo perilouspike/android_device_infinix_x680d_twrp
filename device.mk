@@ -12,5 +12,10 @@ PRODUCT_SHIPPING_API_LEVEL := 29
 
 # fastboot/d hal
 PRODUCT_PACKAGES += \
+    fastbootd \
     android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
+    android.hardware.fastboot@1.0-impl-mock.recovery
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bootimage.build.date.utc=0 \
+    ro.build.date.utc=0    

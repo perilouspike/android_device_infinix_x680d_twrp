@@ -20,9 +20,9 @@ LOCAL_PATH := device/infinix/X680D
 PRODUCT_RELEASE_NAME := X680D
 
 # Inherit from those products. Most specific first.
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/base.mk)
+#$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 #$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 #$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -31,16 +31,16 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := X680D
-PRODUCT_NAME := omni_X680D
+PRODUCT_NAME := twrp_X680D
 PRODUCT_BRAND := Infinix
 PRODUCT_MODEL := X680D
 PRODUCT_MANUFACTURER := infinix
 
 # HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
+#PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
     #PRIVATE_BUILD_DESC="full_x680d_h6116-user 10 QP1A.190711.020 199789 release-keys"
 
-PRODUCT_GMS_CLIENTID_BASE := android-transsion-infinix-rev1
+#PRODUCT_GMS_CLIENTID_BASE := android-transsion-infinix-rev1
 
-BUILD_FINGERPRINT := Infinix/X680D-IN/Infinix-X680D:10/QP1A.190711.020/J-AS-211130V404:user/release-keys
+#BUILD_FINGERPRINT := Infinix/X680D-IN/Infinix-X680D:10/QP1A.190711.020/J-AS-211130V404:user/release-keys

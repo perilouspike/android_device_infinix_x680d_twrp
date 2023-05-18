@@ -13,6 +13,13 @@ BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a55
+
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
@@ -48,8 +55,8 @@ BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x11b00000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_INCLUDE_DTB_IN_BOOTIMG :=
-BOARD_KERNEL_SEPARATED_DTBO :=
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+#BOARD_KERNEL_SEPARATED_DTBO :=
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
 #BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
@@ -86,7 +93,7 @@ BOARD_MAIN_PARTITION_LIST := \
 # File System
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 
@@ -97,6 +104,7 @@ TARGET_COPY_OUT_PRODUCT := product
 # Platform
 TARGET_BOARD_PLATFORM := $(PRODUCT_PLATFORM )
 PRODUCT_PLATFORM := mt6765
+ARCH_ARM_HAVE_NEON := true
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
@@ -134,20 +142,20 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION := 16.1.0
-PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
+#PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
 # Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client
+#TARGET_RECOVERY_DEVICE_MODULES += \
+    #libkeymaster4 \
+    #libpuresoftkeymasterdevice \
+    #ashmemd_aidl_interface-cpp \
+    #libashmemd_client
 
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+#TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    #$(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    #$(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
+    #$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    #$(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 
 # TWRP Configuration
@@ -156,10 +164,12 @@ TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_SKIP_COMPATIBILITY_CHECK := true
 #TW_USE_TOOLBOX := true
 TW_INCLUDE_NTFS_3G := true
 TARGET_USES_MKE2FS := true # Use mke2fs to create ext4 images
 TW_HAS_MTP := true
+TW_NO_LEGACY_PROPS := true
 
 # Set brightness path and level
 TW_MAX_BRIGHTNESS := 1000
@@ -177,7 +187,8 @@ TW_EXCLUDE_TWRPAPP := true
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
-TW_USE_FSCRYPT_POLICY := 1
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+#TW_USE_FSCRYPT_POLICY := 1
 
 # Use props from system instead from recovery build
 #TW_OVERRIDE_SYSTEM_PROPS := \
