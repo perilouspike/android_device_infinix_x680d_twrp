@@ -5,7 +5,7 @@ LOCAL_PATH := device/infinix/X680D
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
-PRODUCT_TARGET_VNDK_VERSION := 29
+#PRODUCT_TARGET_VNDK_VERSION := 29
 
 # Api
 PRODUCT_SHIPPING_API_LEVEL := 29
@@ -13,9 +13,14 @@ PRODUCT_SHIPPING_API_LEVEL := 29
 # fastboot/d hal
 PRODUCT_PACKAGES += \
     fastbootd \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery
+    android.hardware.fastboot@1.0-impl-mock
+   # android.hardware.fastboot@1.0-impl-mock.recovery
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bootimage.build.date.utc=0 \
-    ro.build.date.utc=0    
+#PRODUCT_PROPERTY_OVERRIDES += \
+ #   ro.bootimage.build.date.utc=0 \
+  #  ro.build.date.utc=0    
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+    ro.build.description \
+    ro.system.build.fingerprint \
+    ro.build.fingerprint

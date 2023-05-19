@@ -20,14 +20,19 @@ LOCAL_PATH := device/infinix/X680D
 PRODUCT_RELEASE_NAME := X680D
 
 # Inherit from those products. Most specific first.
-#$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 #$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 #$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
+
+# Inherit from X6815D device
+$(call inherit-product, device/infinix/X680D/device.mk)
+
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(DEVICE_PATH)/recovery/root,recovery/root)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := X680D

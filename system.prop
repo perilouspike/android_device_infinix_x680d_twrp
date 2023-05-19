@@ -1,17 +1,2 @@
-ro.sys.usb.mtp.whql.enable=0
-ro.sys.usb.storage.type=mtp
-sys.usb.controller=musb-hdrc
-persist.sys.isUsbOtgEnabled=true
-ro.boot.dynamic_partitions=true
 ro.vendor.mediatek.platform=MT6765
-ro.hardware=mt6762
 ro.adb.secure=0
-ro.secure=0
-ro.debuggable=1
-ro.sf.lcd_density=320
-ro.treble.enabled=true
-ro.frp.pst=/dev/block/platform/bootdevice/by-name/frp
-#fbe.metadata.wrappedkey=true
-ro.vendor.mtk_microtrust_tee_support=1
-sys.usb.ffs.aio_compat=1
-ro.board.platform=mt6765
