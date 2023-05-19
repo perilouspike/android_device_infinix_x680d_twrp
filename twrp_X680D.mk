@@ -32,7 +32,7 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # Inherit from X6815D device
 $(call inherit-product, device/infinix/X680D/device.mk)
 
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(DEVICE_PATH)/recovery/root,recovery/root)
+#PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(DEVICE_PATH)/recovery/root,recovery/root)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := X680D
