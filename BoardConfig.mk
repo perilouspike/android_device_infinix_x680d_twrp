@@ -112,7 +112,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # System as root
 BOARD_SUPPRESS_SECURE_ERASE := true
@@ -187,9 +187,9 @@ TW_EXCLUDE_TWRPAPP := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-#TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_CRYPTO_FBE := true
 #TW_INCLUDE_FBE_METADATA_DECRYPT := true
-#TW_USE_FSCRYPT_POLICY := 1
+TW_USE_FSCRYPT_POLICY := 1
 
 # Use props from system instead from recovery build
 #TW_OVERRIDE_SYSTEM_PROPS := \

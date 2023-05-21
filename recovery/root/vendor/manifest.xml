@@ -1,32 +1,35 @@
-<!--
-    Input:
-        manifest.xml
-        manifest.xml
-        manifest_fingerprint.xml
-        manifest_target_level_q.xml
-        manifest_audio.xml
-        manifest_dsds_se.xml
-        manifest_radioconfig.xml
-        manifest_pplagent.xml
-        manifest_em.xml
-        manifest_bgservice.xml
-        manifest_op_dsds.xml
-        manifest_wifi.xml
-        manifest_videotelephony.xml
-        manifest_km4.xml
-        manifest_tee.xml
-        manifest.microtrust.xml
-        manifest_log.xml
-        manifest_mdmonitor.xml
-        manifest_netdagent.xml
-        manifest_pq.xml
-        manifest_tranlog.xml
-        manifest_rm.xml
-        manifest_gnss.xml
-        manifest.xml
--->
 <manifest version="1.0" type="device" target-level="4">
     <hal format="hidl">
+        <name>android.hardware.gatekeeper</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+          <name>IGatekeeper</name>
+          <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IGatekeeper/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.keymaster</name>
+        <transport>hwbinder</transport>
+        <version>4.0</version>
+        <interface>
+            <name>IKeymasterDevice</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@4.0::IKeymasterDevice/default</fqname>
+    </hal>
+</manifest>
+
+
+
+
+
+
+
+
+
+
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
         <version>5.0</version>
@@ -115,17 +118,7 @@
         <fqname>@1.2::IDrmFactory/clearkey</fqname>
         <fqname>@1.2::IDrmFactory/widevine</fqname>
     </hal>
-    <hal format="hidl">
-        <name>android.hardware.gatekeeper</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IGatekeeper</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IGatekeeper/default</fqname>
-    </hal>
-    <hal format="hidl">
+   
         <name>android.hardware.gnss</name>
         <transport>hwbinder</transport>
         <version>1.1</version>
@@ -687,4 +680,3 @@
     <sepolicy>
         <version>29.0</version>
     </sepolicy>
-</manifest>
