@@ -4,14 +4,13 @@ on init
     mkdir /mnt/vendor/persist 0700 root root
     mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
 
-    #export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
-
 # Create a more standard /dev/block layout for our scripts
    # symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
 on fs
     install_keyring
     setprop crypto.ready 1
+    export LD_LIBRARY_PATH /vendor/lib:/system/lib:/system/lib/hw:/vendor/lib/hw
 
 service keystore_auth /sbin/keystore_auth
     oneshot
